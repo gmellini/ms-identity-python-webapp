@@ -10,11 +10,13 @@
     <br /> 
     <br /> 
 
+    <!--
     {% if config.get("ENDPOINT") %}
     <a href='/graphcall'>Test Graph API</a>
     <br /> 
     <br /> 
     {% endif %}
+    --> 
 
     {% if config.get("B2C_PROFILE_AUTHORITY") %}
     <a href='{{_build_auth_url(authority=config["B2C_PROFILE_AUTHORITY"])}}'>Edit Profile</a>
