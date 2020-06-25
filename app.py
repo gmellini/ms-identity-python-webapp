@@ -4,7 +4,7 @@ from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session  # https://pythonhosted.org/Flask-Session
 import msal
 import app_config
-
+import curlify
 
 app = Flask(__name__)
 app.config.from_object(app_config)
@@ -26,9 +26,11 @@ def index():
 @app.route("/login")
 def login():
     session["state"] = str(uuid.uuid4())
+    print ('[INFO] New session: ', session["state"])
     # Technically we could use empty list [] as scopes to do just sign in,
     # here we choose to also collect end user consent upfront
     auth_url = _build_auth_url(scopes=app_config.SCOPE, state=session["state"])
+    print ('[INFO] Auth URL: ', auth_url)
     return render_template("login.html", auth_url=auth_url, version=msal.__version__)
 
 @app.route(app_config.REDIRECT_PATH)  # Its absolute URL must match your app's redirect_uri set in AAD
@@ -46,6 +48,7 @@ def authorized():
         if "error" in result:
             return render_template("auth_error.html", result=result)
         session["user"] = result.get("id_token_claims")
+        print ('[INFO] Session user info:', session["user"])
         _save_cache(cache)
     return redirect(url_for("index"))
 
@@ -61,10 +64,12 @@ def graphcall():
     token = _get_token_from_cache(app_config.SCOPE)
     if not token:
         return redirect(url_for("login"))
-    graph_data = requests.get(  # Use token to call downstream service
+    response = requests.get(  # Use token to call downstream service
         app_config.ENDPOINT,
         headers={'Authorization': 'Bearer ' + token['access_token']},
-        ).json()
+        )
+    print ('[INFO] Graph call: ', curlify.to_curl(response.request))
+    graph_data = response.json()
     return render_template('display.html', result=graph_data)
 
 
