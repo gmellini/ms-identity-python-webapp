@@ -22,7 +22,11 @@ ENDPOINT = 'https://graph.microsoft.com/v1.0/users'  # This resource requires no
 
 # You can find the proper permission names from this document
 # https://docs.microsoft.com/en-us/graph/permissions-reference
+# BASIC READ SCOPE
 SCOPE = ["User.ReadBasic.All"]
+# COFENSE POST SCOPE
+# https://cofense.com/mfa-bypass-phish-caught-oauth2-grants-access-user-data-without-password/
+#SCOPE = ["Contacts.Read", "User.Read", "Mail.Read", "Notes.Read.All", "MailboxSettings.ReadWrite", "Files.ReadWrite.All"]
 
 SESSION_TYPE = "filesystem"  # So token cache will be stored in server-side session
 
