@@ -27,6 +27,9 @@ SCOPE = ["User.ReadBasic.All"]
 # COFENSE POST SCOPE
 # https://cofense.com/mfa-bypass-phish-caught-oauth2-grants-access-user-data-without-password/
 #SCOPE = ["Contacts.Read", "User.Read", "Mail.Read", "Notes.Read.All", "MailboxSettings.ReadWrite", "Files.ReadWrite.All"]
+# GET SHARED FILES SCOPE
+# https://docs.microsoft.com/en-us/graph/api/drive-sharedwithme?view=graph-rest-1.0&tabs=http
+#SCOPE = ["Files.Read.All", "Files.ReadWrite.All", "Sites.Read.all", "Sites.ReadWrite.All"]
 
 SESSION_TYPE = "filesystem"  # So token cache will be stored in server-side session
 

@@ -26,9 +26,11 @@ def on_modified(event):
             # SCOPE ==> User.ReadBasic.All
             # read basic info of the users in organization
             URL = 'https://graph.microsoft.com/v1.0/users?$select=displayName,mail'
-            # SCOPE ==> Mail.Read
+            # SCOPE ==> ["Files.Read.All", "Files.ReadWrite.All", "Sites.Read.all", "Sites.ReadWrite.All"]
             # read messages in user mailbox
-            # URL = 'https://graph.microsoft.com/v1.0/me/messages'
+            #URL = 'https://graph.microsoft.com/v1.0/me/messages'
+            # SCOPE ==> ["Files.Read.All", "Files.ReadWrite.All", "Sites.Read.all", "Sites.ReadWrite.All"]
+            #URL = 'https://graph.microsoft.com/v1.0/me/drive/sharedWithMe'
             headers = {
                 "Authorization": "Bearer {}".format(token),
                 "Accept": "application/json"
