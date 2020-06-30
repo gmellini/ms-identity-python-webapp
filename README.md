@@ -1,12 +1,6 @@
----
-page_type: sample
-languages:
-- python
-products:
-- azure-active-directory
-description: "This sample demonstrates a Python web application calling a Microsoft Graph that is secured using Azure Active Directory."
-urlFragment: ms-identity-python-webapp
----
+Check my blog post: [Phishing Microsoft cloud users using malicious apps and OAuth2](https://scubarda.com/2020/06/30/phishing-microsoft-cloud-users-using-malicious-apps-and-oauth2/)
+
+
 # Integrating Microsoft Identity Platform with a Python web application
 
 ## About this sample
